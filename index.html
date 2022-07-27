@@ -51,27 +51,47 @@
         }
     </style>
 </head>
+<script type="text/javascript">
+    function check(form){
+        if(form.username.value=='' && form.password.value==''){
+            alert("Please input username and password!");
+            form.username.focus();
+            return false;
+        }
+        if(form.username.value==''){
+            alert("Please input username!");
+            form.username.focus();
+            return false;
+        }
+        if(form.password.value==''){
+            alert("Please input password!");
+            form.password.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
 <body>
     <div class="root">
         <div>
             <span id="title">FSE Chat Room</span>
             <br>
+            <form name="form" method="post">
             <p>
                 <span class="Log_Inf">Username</span> 
                 <br>
-                <input type="text">
+                <input type="text" name="username">
             </p>
             <p>
                 <span class="Log_Inf">Password</span> 
                 <br>
-                <input type="password">
+                <input type="password" name="password">
             </p>
-            <input type="submit" class="button" value="Login" />
-            <input type="submit" class="button" value="Register" />            
+            
+                <input type="submit" name="button" class="button" value="login" onclick="return check(this.form)"/>
+                <input type="submit" name="button" class="button" value="register" onclick="return check(this.form)"/>   
+            </form>
         </div>
     </div>
 </body>
-<script>
-    
-</script>
 </html>
