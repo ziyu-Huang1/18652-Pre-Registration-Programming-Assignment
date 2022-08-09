@@ -1,12 +1,14 @@
 const bcrypt = require('bcryptjs')
+const fs = require('fs')
 const db = require('../database/db_index')
+
 
 exports.loginPageHandle = (request, response)=>{
     const userinfo = request.body
     if(userinfo.button == 'register'){
         const userCheck = 'select * from user where username=?'
         db.query(userCheck, userinfo.username, (error, results)=>{
-            console.log(userinfo)
+            // console.log(userinfo)
             if(error){
                 return response.send(error.message)
             }
@@ -22,8 +24,36 @@ exports.loginPageHandle = (request, response)=>{
                 if(results.affectedRows !== 1){
                     return response.send("Register fail!")
                 }
+                request.session.user = request.body
+                request.session.islogin = true
                 response.send("Success!")
             })
+        })        
+    } 
+    if(userinfo.button == 'login'){
+        const userCheck = 'select * from user where username=?'
+        db.query(userCheck, userinfo.username, (error, results)=>{
+            // console.log(userinfo)
+            if(error){
+                return response.send(error.message)
+            }
+            if(results.length == 0){
+                return response.send('User not exist!')
+            }
+            const compareResult = bcrypt.compareSync(userinfo.password, results[0].password)
+            if(!compareResult){
+                return response.send("Wrong password!")
+            }
+            // response.send("Login success!")
+            // fs.readFile('./chatroom.html', 'utf-8', function(err, datastr){
+            //     if(err){
+            //         return console.log('error: ' + err.message);
+            //     }
+            //     response.send(datastr)
+            // })
+            request.session.user = request.body
+            request.session.islogin = true
+            response.redirect('/chatroom')
         })        
     } 
 }
