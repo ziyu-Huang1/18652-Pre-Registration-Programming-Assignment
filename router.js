@@ -34,14 +34,19 @@ router.get('/chatroom', (request, response)=>{
     //     }
     //     response.end(datastr)
     // })
+    console.log(request.session.user.username)
     response.sendFile(__dirname + '/public/chatroom.html')
 })
 
-router.get('/userinfo', (req, res)=>{
-    if(!req.session.islogin){
-        return res.send('G!')
-    }
-    res.send(req.session.user.username)
+router.get('/logout', (req, res)=>{
+    req.session.destroy()
 })
+
+// router.get('/userinfo', (req, res)=>{
+//     if(!req.session.islogin){
+//         return res.send('G!')
+//     }
+//     res.send(req.session.user.username)
+// })
 
 module.exports = router 

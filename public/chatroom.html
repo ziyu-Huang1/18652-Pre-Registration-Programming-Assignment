@@ -4,22 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chatroom</title>
+    <style>
+        *{
+            margin: 5px;
+            padding: 0;
+        }
+        body{
+            height:100%;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #title{
+            font-weight: bold;
+            font-size: 20px;
+            background-color: cornflowerblue;
+            height: 40px;
+        }
+        .button{
+            background-color: coral;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 5px;
+            border-color: black;
+            border-width: 1px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        p input{
+            width: 320px;
+            height: 200px;
+        }
+        #post{
+            background-color: cornflowerblue;
+        }
+    </style>
 </head>
 <body>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+    <!-- <script src="./node_modules/socket.io/client-dist/socket.io.js"></script> -->
+    <script src="./chatroom.js"></script>
     <div class="root">
-        <div>
+        <div id="title">
             <span>FSE Chat Room</span>
-            <input type="submit" name="button" class="button" value="logout"/>
+            <input type="submit" name="button" class="button" value="logout" onclick="logout()"/>
         </div>
         <div>
+            <table class="table table-hover">
+                <tbody id="table-body">
 
+                </tbody>
+              </table>
         </div>
         <div>
-
-        </div>
-        <div>
-
+            <p>
+                <input type="text">
+            </p>
+            <p id="post">
+                <button type="button" class="button">Post</button>
+            </p>
         </div>
     </div>
 </body>
