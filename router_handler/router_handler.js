@@ -24,7 +24,7 @@ exports.loginPageHandle = (request, response)=>{
                 if(results.affectedRows !== 1){
                     return response.send("Register fail!")
                 }
-                request.session.user = request.body
+                request.session.username = request.body.username
                 request.session.islogin = true
                 response.send("Success!")
             })
@@ -44,16 +44,24 @@ exports.loginPageHandle = (request, response)=>{
             if(!compareResult){
                 return response.send("Wrong password!")
             }
-            // response.send("Login success!")
-            // fs.readFile('./chatroom.html', 'utf-8', function(err, datastr){
-            //     if(err){
-            //         return console.log('error: ' + err.message);
-            //     }
-            //     response.send(datastr)
-            // })
-            request.session.user = request.body
+            request.session.username = request.body.username
             request.session.islogin = true
             response.redirect('/chatroom')
         })        
     } 
+}
+
+exports.chatHistory = (req, res)=>{
+    const content = 'select * from chatcontent'
+    db.query(content, (error, result)=>{
+        if(error){
+            return res.send(error.message)
+        }
+        return res.json(result)
+    })
+}
+
+exports.logoutHandle = (req, res)=>{
+    req.session.destroy()
+    res.redirect('/login')
 }

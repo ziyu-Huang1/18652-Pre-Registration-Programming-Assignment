@@ -35,9 +35,35 @@
             padding-left: 15px;
             padding-right: 15px;
         }
+        .wrapper{
+            overflow: auto;
+            position: fixed;
+            width: 324px;
+            height: 55%;
+            background-color:darkgrey;
+            margin-bottom: 5%;
+        }
+        .table{
+            width: 95%;
+        }
+        #usr{
+            font-weight: bold;
+            font-size: 18px;
+            text-align: left;
+        }
+        #time{
+            text-align: right;
+        }
+        #cont{
+            text-align: left;
+            border-bottom: 4px solid white;
+        }
+        .Post{
+            margin-top: 460px;
+        }
         p input{
-            width: 320px;
-            height: 200px;
+            width: 300px;
+            height: 180px;
         }
         #post{
             background-color: cornflowerblue;
@@ -53,19 +79,19 @@
             <span>FSE Chat Room</span>
             <input type="submit" name="button" class="button" value="logout" onclick="logout()"/>
         </div>
-        <div>
+        <div class="wrapper" id="wrapper">
             <table class="table table-hover">
-                <tbody id="table-body">
+                <tbody id="tableBody">
 
                 </tbody>
               </table>
         </div>
-        <div>
+        <div class="Post">
             <p>
-                <input type="text">
+                <input type="text" id="chatContent">
             </p>
             <p id="post">
-                <button type="button" class="button">Post</button>
+                <button type="button" class="button" onclick="post()">Post</button>
             </p>
         </div>
     </div>

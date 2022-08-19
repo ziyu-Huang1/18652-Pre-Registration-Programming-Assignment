@@ -1,26 +1,19 @@
 const express = require('express')
 const fs = require('fs')
-const session = require('express-session')
 const router_handler = require('./router_handler/router_handler')
 const router = express.Router()
 
-router.use(session({
-    secret: '18652',
-    resave: false,
-    saveUninitialized: true,
-}))
+// router.use(session({
+//     secret: '18652',
+//     resave: false,
+//     saveUninitialized: true,
+// }))
 
 
 router.use(express.json())
 router.use(express.urlencoded({extended:false}))
 
 router.get('/login', (request, response)=>{
-    // fs.readFile('./index.html', 'utf-8', function(err, datastr){
-    //     if(err){
-    //         return console.log('error: ' + err.message);
-    //     }
-    //     response.end(datastr)
-    // })
     response.sendFile(__dirname + '/public/index.html')
 })
 
@@ -34,19 +27,19 @@ router.get('/chatroom', (request, response)=>{
     //     }
     //     response.end(datastr)
     // })
-    console.log(request.session.user.username)
+    console.log(request.session.username)
     response.sendFile(__dirname + '/public/chatroom.html')
 })
 
-router.get('/logout', (req, res)=>{
-    req.session.destroy()
-})
+router.get('/logout', router_handler.logoutHandle)
+
+router.get('/chatHistory', router_handler.chatHistory)
 
 // router.get('/userinfo', (req, res)=>{
 //     if(!req.session.islogin){
 //         return res.send('G!')
 //     }
-//     res.send(req.session.user.username)
+//     res.send(req.session.username)
 // })
 
 module.exports = router 
