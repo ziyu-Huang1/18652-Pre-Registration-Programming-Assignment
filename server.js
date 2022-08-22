@@ -16,7 +16,6 @@ const sessionMiddleware = session({
     saveUninitialized: false
 });
 
-// const wrap = middleware => (socket, next) => middleware(socket.request, socket.request.response || {}, next)
 io.use(function(socket, next){
     sessionMiddleware(socket.request, socket.request.res || {}, next)
   })

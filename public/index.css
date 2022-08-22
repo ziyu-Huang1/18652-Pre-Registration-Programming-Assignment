@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    height:100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.root{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 200px;
+}
+#title{
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.button{
+    background-color:cornflowerblue;
+    width: 160px;
+    height: 27px;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: black;
+    border-width: 1px;
+    margin-top: 15px;
+}
+p{
+    text-align: left;
+    margin-top: 15px;
+}
+p input{
+    width: 320px;
+    height: 30px;
+}

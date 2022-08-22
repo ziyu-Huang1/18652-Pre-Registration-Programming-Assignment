@@ -3,12 +3,6 @@ const fs = require('fs')
 const router_handler = require('./router_handler/router_handler')
 const router = express.Router()
 
-// router.use(session({
-//     secret: '18652',
-//     resave: false,
-//     saveUninitialized: true,
-// }))
-
 
 router.use(express.json())
 router.use(express.urlencoded({extended:false}))

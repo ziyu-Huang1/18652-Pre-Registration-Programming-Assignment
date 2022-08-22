@@ -3,7 +3,36 @@ const socket = io()
 function showContent(username, content, time){
     var tableBody = document.getElementById("tableBody")
     var date = new Date(Number(time))
-    var contentTime = date.getMonth() + "." + date.getDay() + "." + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()
+    var contentTime = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.'
+    contentTime += (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + '.'
+    contentTime += date.getFullYear() + " "
+    var t = ""
+    if(date.getHours() < 10){
+        contentTime += '0' + date.getHours()
+        t = "AM"
+    }
+    else if(date.getHours() < 11){
+        contentTime += date.getHours()
+        t = "AM"
+    }
+    else if(date.getHours() == 12){
+        contentTime += date.getHours()
+        t = "PM"
+    }
+    else if(date.getHours() < 24){
+        if(date.getHours()-12 < 10){
+            contentTime += '0' + (date.getHours()-12)
+        }
+        else{
+            contentTime += (date.getHours()-12)
+        }
+        t = "PM"
+    }
+    else{
+        contentTime += (date.getHours()-12)
+        t = "AM"
+    }
+    contentTime += ":" + (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()) + t
     var row1 = document.createElement('tr')
     var row2 = document.createElement('tr')
     var rowUsername = document.createElement('td')

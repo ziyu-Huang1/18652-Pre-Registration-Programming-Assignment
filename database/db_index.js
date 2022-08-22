@@ -8,3 +8,12 @@ const db = mysql.createPool({
 })
 
 module.exports = db
+
+// table user
+// username varchar(255) primary key
+// password varchar(255)
+
+//table chatcontent
+//username varchar(255)
+//content varchar(500)
+//time varchar(30)
